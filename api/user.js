@@ -2,14 +2,14 @@ module.exports = function User(x) {
     var list = function(req, res) {
         // res.send('Message from User.LIST');
         var User = require('../model/user_model');
-        User.find(function(err, drivers) {
+        User.find(function(err, data) {
             if (err) {
                 res.status(500).send({
                     result: "error",
                     message: "Some errors occur while retrieving drivers"
                 })
             } else {
-                res.send({ result: "Successs" });
+                res.send(data);
             }
         });
     };
