@@ -3,7 +3,7 @@ module.exports = function Server(x) {
         express = x.express,
         morgan = x.morgan,
         helmet = x.helmet;
-
+    mongoose = x.mongoose;
     const start = function() {
         var port = x.config.env.PORT || 8080;
 
