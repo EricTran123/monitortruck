@@ -10,7 +10,8 @@ module.exports = function X(config) {
     x.helmet = require('helmet');
     x.path = require('path');
     x.mongoose = require('mongoose');
-    var x;
+    x.bodyParser = require('body-parser');
+    //var x;
 
     /**
      *

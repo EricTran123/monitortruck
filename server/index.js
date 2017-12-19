@@ -4,10 +4,17 @@ module.exports = function Server(x) {
         morgan = x.morgan,
         helmet = x.helmet;
     mongoose = x.mongoose;
+    bodyParser = x.bodyParser;
     const start = function() {
         var port = x.config.env.PORT || 8080;
 
         const app = express();
+        // parse application/x-www-form-urlencoded
+        app.use(bodyParser.urlencoded({ extended: true }));
+
+        // parse application/json
+        app.use(bodyParser.json());
+
         app.use(morgan('dev'));
         app.use(express.static(path.join(__dirname, '../public')));
 
