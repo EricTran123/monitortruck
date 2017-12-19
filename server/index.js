@@ -17,6 +17,14 @@ module.exports = function Server(x) {
         const server = app.listen(x.config.env.PORT, function() {
             console.info(x.util.format('The ' + x.config.APP_NAME + ' is running on port %d', port));
         });
+        mongoose.connect(x.config.DB_URL, function(err) {
+            if (err) {
+                console.log('Could not connect to the database. Exiting now...');
+                process.exit();
+            } else {
+                console.log("Successfully connected to the database");
+            }
+        });
     };
 
     return {
