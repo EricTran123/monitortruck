@@ -9,7 +9,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "helmet": "^3.9.0",
-    "mongoose": "^4.13.6",
+    "mongoose": "^4.13.7",
     "morgan": "^1.9.0",
     "node-env-file": "^0.1.8",
     "util": "^0.10.3",
