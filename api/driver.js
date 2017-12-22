@@ -22,7 +22,7 @@ module.exports = function Driver(x) {
                 if (err) {
                     res.status(500).send({
                         result: "error",
-                        message: "Some error  while adding new driver."
+                        message: "Some error while adding new driver."
                     });
                 } else {
                     res.status(200).send(driver);
@@ -32,14 +32,14 @@ module.exports = function Driver(x) {
     };
     var findDriverByID = function(req, res) {
         var Driver = require('../model/driver_model')
-        Driver.findById(req.params.id, function(err, data) {
+        Driver.findById(req.params.id, function(err, driver) {
             if (err) {
                 res.status(500).send({
                     result: "error",
-                    messsage: "Could not retrieve note with id " + req.params.id
+                    messsage: "Could not retrieve driver with id " + req.params.id
                 })
             } else {
-                res.send(data);
+                res.send(driver);
             }
         });
     };
@@ -106,7 +106,7 @@ module.exports = function Driver(x) {
                     if (err) {
                         res.status(500).send({
                             result: "",
-                            message: "Counld not update driver with id: " + req.params.id
+                            message: "Could not update driver with id: " + req.params.id
                         });
                     } else {
                         res.send(data);
