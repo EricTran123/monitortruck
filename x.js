@@ -30,6 +30,5 @@ module.exports = function X(config) {
     x.apis = require('./api')(x);
     x.routes = require('./routing')(x).routes;
 
-
     return x;
 }

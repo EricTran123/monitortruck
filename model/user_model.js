@@ -16,6 +16,10 @@ var userSchema = new Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    register_Date: {
+        type: Date,
+        default: Date.now
     }
 });
 module.exports = x.mongoose.model('User', userSchema);

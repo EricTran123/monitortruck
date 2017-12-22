@@ -20,7 +20,6 @@ module.exports = function User(x) {
     var addUser = function(req, res) {
         var User = require('../model/user_model');
         var user = new User(req.body);
-        console.log("Name:", user.email);
         if (!user.name) {
             res.status(400).send({
                 result: "error",
@@ -30,6 +29,11 @@ module.exports = function User(x) {
             res.status(400).send({
                 result: "error",
                 message: "Email is invalid"
+            });
+        } else if (user.admin == null) {
+            res.status(400).send({
+                result: "error",
+                message: "Admin is null"
             });
         } else {
             user.save(function(err, data) {

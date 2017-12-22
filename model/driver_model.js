@@ -6,14 +6,17 @@ var driverSchema = new Schema({
         type: String,
         trim: true,
         required: true,
-        unique: true
     },
     email: {
         type: String,
         trim: true,
         unique: true,
         required: true,
+    },
+    plateNumber: {
+        type: String,
+        trim: true,
+        required: true,
     }
-
 });
 module.exports = x.mongoose.model('Driver', driverSchema);

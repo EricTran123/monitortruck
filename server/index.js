@@ -18,9 +18,9 @@ module.exports = function Server(x) {
         app.use(morgan('dev'));
         app.use(express.static(path.join(__dirname, '../public')));
 
-        app.use('/truck', x.routes.truck);
         app.use('/user', x.routes.user);
         app.use('/driver', x.routes.driver);
+        app.use('/customer', x.routes.customer)
 
         const server = app.listen(x.config.env.PORT, function() {
             console.info(x.util.format('The ' + x.config.APP_NAME + ' is running on port %d', port));
