@@ -15,6 +15,10 @@ var transactionSchema = new Schema({
         min: 1,
         required: true,
     },
+    transportationFee: {
+        type: Number,
+        required: true
+    },
     driver: [{
         type: Schema.Types.ObjectId,
         ref: 'Driver'
