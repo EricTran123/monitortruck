@@ -19,10 +19,6 @@ var transactionSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Driver'
     }],
-    truck: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Truck'
-    }],
     description: {
         type: String,
         default: ''
