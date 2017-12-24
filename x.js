@@ -13,6 +13,7 @@ module.exports = function X(config) {
     x.bodyParser = require('body-parser');
     x.passport = require('passport');
     x.jwt = require('jwt-simple');
+    x.bcrypt  = require('bcrypt');
     //var x;
 
     /**
