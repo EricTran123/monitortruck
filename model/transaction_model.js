@@ -23,9 +23,24 @@ var transactionSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Driver'
     }],
+    status:{
+        type:[{
+            type: String,
+            enum:['Pending','On-going','Completed']
+        }],
+        default: ['Pending']
+    },
     description: {
         type: String,
         default: ''
+    },
+    create_date:{
+        type: Date,
+        default: Date.now
+    },
+    update_date:{
+        type: Date,
+        default: Date.now
     }
 });
-module.exports = x.mongoose.model('Customer', transactionSchema);
+module.exports = x.mongoose.model('Transaction', transactionSchema);

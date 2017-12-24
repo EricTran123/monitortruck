@@ -11,6 +11,8 @@ module.exports = function X(config) {
     x.path = require('path');
     x.mongoose = require('mongoose');
     x.bodyParser = require('body-parser');
+    x.passport = require('passport');
+    x.jwt = require('jwt-simple');
     //var x;
 
     /**
