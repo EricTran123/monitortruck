@@ -8,7 +8,7 @@ var userSchema = new Schema({
         unique: true,
         required: true
     },
-    password:{
+    password: {
         type: String,
         required: true
     },
@@ -28,34 +28,12 @@ var userSchema = new Schema({
     }
 });
 
-userSchema.pre('save', function(next){
-    var user = this,
-    if (this.isModified('password')|| this.new){
-        x.bcrypt.genSalt(10, function(err, salt){
-            if (err){
-                return next(err);
-            }
-            bcrypt.hash(user.password, salt, function(err, hash){
-                if (err){
-                    return next(err);
-                } else{
-                    user.password = hash;
-                    next();
-                }
-            })
-        })
-    } else{
-        return next();
-    }
-});
-
-userSchema.methods.comparePassword = function(passw, cb){
-    x.bcrypt.compare(passw, this.password, function(err, isMatch){
-        if (err){
-            return cb(err);
-        } else {
-            cb(null, isMatch);
-        }
-    });
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+};
+
+//http://doppiaeast.com/article/mean-angular2-jwt-setup/
 module.exports = x.mongoose.model('User', userSchema);

@@ -11,9 +11,7 @@ module.exports = function X(config) {
     x.path = require('path');
     x.mongoose = require('mongoose');
     x.bodyParser = require('body-parser');
-    x.passport = require('passport');
-    x.jwt = require('jwt-simple');
-    x.bcrypt  = require('bcrypt');
+    x.bcrypt = require('bcrypt-nodejs');
     //var x;
 
     /**
