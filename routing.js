@@ -2,18 +2,19 @@ module.exports = function Routing(x) {
     var routes = {};
     //Set router for user controller
     var router = x.express.Router();
-    router.get('/', x.apis.user.list);
-    router.get('/:id', x.apis.user.findById);
-    router.post('/', x.apis.user.addUser);
+    // Register new user
+    router.post('/register', x.apis.user.register);
+    //Login user
+    router.post('/login', x.apis.user.login);
     routes.user = router;
 
     //Set router for driver controller
     router = x.express.Router();
     //Add driver
     router.post('/', x.apis.driver.addDriver);
-    //Find driver by ID
+    //Get driver by ID
     router.get('/:id', x.apis.driver.findDriverByID);
-    //Find all drivers
+    //Get all drivers
     router.get('/', x.apis.driver.findAllDriver);
     // Delete driver 
     router.delete('/:id', x.apis.driver.deleteDriver);

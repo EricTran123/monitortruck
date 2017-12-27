@@ -12,6 +12,7 @@ module.exports = function X(config) {
     x.mongoose = require('mongoose');
     x.bodyParser = require('body-parser');
     x.bcrypt = require('bcrypt-nodejs');
+    x.jwt = require('jsonwebtoken');
     //var x;
 
     /**

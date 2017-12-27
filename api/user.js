@@ -1,57 +1,66 @@
 module.exports = function User(x) {
-    var list = function(req, res) {
-        // res.send('Message from User.LIST');
+    var register = function(req, res) {
         var User = require('../model/user_model');
-        User.find(function(err, data) {
-            if (err) {
-                res.status(500).send({
-                    result: "error",
-                    message: "Some errors occur while retrieving drivers"
-                })
-            } else {
-                res.send(data);
-            }
-        });
-    };
-
-    var findById = function(req, res) {
-        res.send('Message from User.findById');
-    };
-    var addUser = function(req, res) {
-        var User = require('../model/user_model');
-        var user = new User(req.body);
-        if (!user.name) {
-            res.status(400).send({
-                result: "error",
-                message: "Name is invalid"
-            });
-        } else if (!user.email) {
-            res.status(400).send({
-                result: "error",
-                message: "Email is invalid"
-            });
-        } else if (user.admin == null) {
-            res.status(400).send({
-                result: "error",
-                message: "Admin is null"
-            });
-        } else {
-            user.save(function(err, data) {
+        process.nextTick(() => {
+            User.findOne({ 'email': req.body.email }, function(err, user) {
                 if (err) {
-                    res.status(500).send({
-                        result: "error",
-                        message: "Some error  while creating new user."
-                    });
+                    res.send({ success: false, message: "Authentication failed." });
+                    return;
+                } else if (user) {
+                    res.send({ success: false, message: "Username already exists" });
+                    return;
+                } else if (!req.body.email || !req.body.password) {
+                    res.send({ success: false, message: "Please pass name and password." });
+                    return;
                 } else {
-                    res.status(200).send(data);
+                    var newUser = new User();
+                    newUser.email = req.body.email;
+                    newUser.password = newUser.generateHash(req.body.password);
+                    if (req.body.admin) {
+                        newUser.admin = req.body.admin;
+                    }
+                    newUser.save(function(err) {
+                        if (err) {
+                            return res.send({ success: false, message: 'Username already exists.' });
+                        }
+                        var token = x.jwt.sign(newUser.toJSON(), x.config.SECRET_KEY, {
+                            expiresIn: 60 * 60 * 24
+                        });
+                        res.send({ success: true, message: 'Successful created new user.', user: user.email, token: token });
+
+                    })
                 }
             });
-        }
+        })
     };
+    var login = function(req, res) {
+        var User = require('../model/user_model');
+        var reqUser = req.body;
+        User.findOne({ 'email': reqUser.email }, function(err, user) {
+            if (err) {
+                return;
+            }
+            if (!user) {
+                res.send({ success: false, message: 'User does not exists' });
+                return;
+            }
+            if (!user.validPassword(reqUser.password)) {
+                res.send({ success: false, message: 'Incorrect password.' });
+                return;
+            }
+            var token = x.jwt.sign(user.toJSON(), x.config.SECRET_KEY, {
+                expiresIn: 60 * 60 * 24
+            });
+            res.send({ success: true, message: 'You logged in', user: user.email, token: token });
+        });
+
+    };
+    var auth = require('../middleware/auth');
+    var getMemberInfo = function(req, res) {};
 
     return {
-        list: list,
-        findById: findById,
-        addUser: addUser
+        register: register,
+        login: login,
+        getMemberInfo: getMemberInfo
     }
 }

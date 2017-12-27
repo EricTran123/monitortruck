@@ -25,7 +25,7 @@ module.exports = function Driver(x) {
                         message: "Some error while adding new driver."
                     });
                 } else {
-                    res.status(200).send(driver);
+                    res.status(200).send({ success: true, driver: driver });
                 }
             });
         }
@@ -35,11 +35,11 @@ module.exports = function Driver(x) {
         Driver.findById(req.params.id, function(err, driver) {
             if (err) {
                 res.status(500).send({
-                    result: "error",
+                    success: false,
                     messsage: "Could not retrieve driver with id " + req.params.id
                 })
             } else {
-                res.send(driver);
+                res.status(200).send({ success: true, driver: driver });
             }
         });
     };
@@ -49,13 +49,13 @@ module.exports = function Driver(x) {
         Driver.findById(req.params.id, function(err, driver) {
             if (err) {
                 res.status(500).send({
-                    result: "error",
+                    success: false,
                     message: "Could not delete driver with id " + req.params.id
                 });
             }
             if (driver == null) {
                 res.status(404).send({
-                    result: "error",
+                    success: false,
                     message: "Driver can not be found."
                 })
             } else {
@@ -65,7 +65,7 @@ module.exports = function Driver(x) {
                         return;
                     } else {
                         res.status(200).send({
-                            result: "Succcess",
+                            success: true,
                             message: "Driver is deleted successfully."
                         })
                     }
@@ -78,11 +78,11 @@ module.exports = function Driver(x) {
         Driver.find(function(err, drivers) {
             if (err) {
                 res.status(500).send({
-                    result: "error",
+                    success: false,
                     message: "Some errors occur while retrieving drivers"
                 })
             } else {
-                res.send(drivers);
+                res.status(200).send({ success: true, drivers: drivers });
             }
         })
     };
@@ -91,13 +91,13 @@ module.exports = function Driver(x) {
         Driver.findById(req.params.id, function(err, driver) {
             if (err) {
                 res.status(500).send({
-                    result: "error",
+                    success: false,
                     message: "Could not find a driver with id " + req.params.id
                 })
             }
             if (driver == null) {
                 res.status(404).send({
-                    result: "error",
+                    success: false,
                     message: "Driver can be not found."
                 })
             } else {
@@ -105,11 +105,11 @@ module.exports = function Driver(x) {
                 driver.save(function(err, data) {
                     if (err) {
                         res.status(500).send({
-                            result: "",
+                            success: false,
                             message: "Could not update driver with id: " + req.params.id
                         });
                     } else {
-                        res.send(data);
+                        res.status(200).send({ success: true, driver: data });
                     }
                 })
             }
