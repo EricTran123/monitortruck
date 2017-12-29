@@ -26,8 +26,7 @@ module.exports = function User(x) {
                         var token = x.jwt.sign(newUser.toJSON(), x.config.SECRET_KEY, {
                             expiresIn: 60 * 60 * 24
                         });
-                        res.send({ success: true, message: 'Successful created new user.', user: user.email, token: token });
-
+                        res.send({ success: true, message: 'Successful created new user.', newUser: newUser.email, token: token });
                     })
                 }
             });
