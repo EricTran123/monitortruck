@@ -1,18 +1,46 @@
-<!DOCTYPE html>
-<html data-ng-app="x">
+<html>
 
-<head></head>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="./test.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+</head>
 
-<body data-ng-controller="TruckCtrl as vm">
+<body>
+    <div data-ng-app="myApp">
+        <div ng-controller="GreetingController">
+            <p>{{greeting}}</p>
+            <input type="number" ng-model="number1">
+            <span>Result/: </span>
+            <p>{{doubleNumber(number1)}}</p>
+        </div>
+        <div ng-controller="SpicyController">
 
-    <h1>My First Heading</h1>
-    <p data-ng-bind="vm.message"></p>
-    <input type="text" data-ng-model="vm.message" />
-    <p>My first paragraph.</p>
-    <p></p>
-    <script src="assets/libs/angular.min.js"></script>
-    <script src="app/index.js"></script>
-    <script src="app/driver.controller.js"></script>
+            <button type="button" class="btn btn-primary" ng-click="show1()">Show1</button>
+            <button type="button" class="btn btn-success" ng-click="show2()">Show2</button>
+            <p>
+                <span class="label label-warning">{{text}}</span>
+            </p>
+        </div>
+        <div ng-controller="ServiceController">
+            <p>{{text}}</p>
+        </div>
+        <!-- <div ng-controller="Ctrl">
+            <ul>
+                <li ng-repeat="x in Applicantdata">
+                    {{x.Name + " " + x.Country}}
+                </li>
+            </ul>
+        </div> -->
+    </div>
+
+
 
 </body>
 
