@@ -1,27 +1,33 @@
 (function() {
-    angular.module("LoginApp").controller("LoginController", LoginController);
+    'use strict';
 
-    function LoginController($location, AuthenticationService) {
+    angular
+        .module('app')
+        .controller('Login.IndexController', Controller);
+
+    function Controller($location, AuthenticationService) {
         var vm = this;
+
         vm.login = login;
+
         initController();
 
         function initController() {
+            // reset login status
             AuthenticationService.Logout();
         };
 
         function login() {
             vm.loading = true;
             AuthenticationService.Login(vm.username, vm.password, function(result) {
-                if (result == true) {
-                    // $location.path("/");
-                    console.log("Login success")
-                    vm.success = "Login success";
+                if (result === true) {
+                    $location.path('/');
                 } else {
-                    vm.err = "Username or password is incorrect";
+                    vm.error = 'Username or password is incorrect';
                     vm.loading = false;
                 }
             });
         };
     }
+
 })();
