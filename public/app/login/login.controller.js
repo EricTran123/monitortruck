@@ -1,11 +1,10 @@
 (function() {
-    'use strict';
 
     angular
-        .module('app')
-        .controller('Login.IndexController', Controller);
+        .module('AuthenApp',['ngStorageApp'])
+        .controller('LoginController', LoginController);
 
-    function Controller($location, AuthenticationService) {
+    function LoginController($location, AuthenticationService) {
         var vm = this;
 
         vm.login = login;
@@ -19,11 +18,11 @@
 
         function login() {
             vm.loading = true;
-            AuthenticationService.Login(vm.username, vm.password, function(result) {
+            AuthenticationService.Login(vm.email, vm.password, function(result) {
                 if (result === true) {
-                    $location.path('/');
+                    $location.path('../home/home.html');
                 } else {
-                    vm.error = 'Username or password is incorrect';
+                    vm.error = 'Email or password is incorrect';
                     vm.loading = false;
                 }
             });

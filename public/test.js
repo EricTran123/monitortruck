@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngStorage']);
+var app = angular.module('myApp', ['myApp1','ngStorage']);
 app.controller('GreetingController', ['$scope', function($scope) {
     $scope.greeting = 'Tesst';
     $scope.doubleNumber = function(num) {
@@ -39,7 +39,7 @@ app.controller("ServiceController", function($scope, $http, $localStorage) {
         console.log("Successsssssssssssssss")
         $scope.text = response.data;
         // console.log(response.data.token)
-        $localStorage.currentUser = { email: response.data.user, token: response.data.token };
+        $localStorage.currentUser = { email: response.data.email, token: response.data.token };
         console.log($localStorage.currentUser);
     }, function(response) {
         $scope.text = response.status;
@@ -58,3 +58,8 @@ app.controller('Ctrl', function($scope, $localStorage, $http) {
         });
     }
 });
+ app.controller('CalcController', function($scope, CalcService) {
+    $scope.square = function() {
+       $scope.result = CalcService.square($scope.number);
+    }
+ });
