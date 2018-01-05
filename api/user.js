@@ -54,6 +54,9 @@ module.exports = function User(x) {
         });
 
     };
+    var changePassword = function(req, res) {
+
+    }
     var auth = require('../middleware/auth');
     var getMemberInfo = function(req, res) {};
 
