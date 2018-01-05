@@ -16,7 +16,7 @@ module.exports = function Server(x) {
         app.use(bodyParser.json());
 
         app.use(morgan('dev'));
-        app.use(express.static(path.join(__dirname, '../public')));
+        app.use(express.static(path.join(__dirname, '../public/app')));
 
         app.use('/user', x.routes.user);
         app.use('/driver', x.routes.driver);
