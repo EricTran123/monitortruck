@@ -15,19 +15,19 @@ app.factory('LoginService', function($http) {
     // };
     var services = {};
     var isAuthenticated = false;
+    var message = "";
     services.isAuthenticated = function() {
         return isAuthenticated;
     }
     services.login = function(username, password) {
         // isAuthenticated = username === admin && password === pass;
-        console.log("User: " + username)
-        console.log("Password: " + password)
         $http({
             method: "POST",
             url: "/user/login",
             data: { email: username, password: password }
         }).then(function(response) {
             console.log("Token: " + response.data.token);
+            message = response
             if (response.data.token) {
                 isAuthenticated = true;
             } else {

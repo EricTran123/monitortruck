@@ -58,7 +58,9 @@ module.exports = function User(x) {
 
     }
     var auth = require('../middleware/auth');
-    var getProfile = function(req, res) {};
+    var getProfile = function(req, res) {
+
+    };
 
     return {
         register: register,
