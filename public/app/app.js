@@ -21,6 +21,11 @@
                     url: '/home',
                     templateUrl: './home/home.html',
                     controller: 'HomeController'
+                })
+                .state('forgotPassword', {
+                    url: '/forgotPassword',
+                    templateUrl: './login/forgotPassword.html',
+                    controller: 'LoginController'
                 });
 
             $urlRouterProvider.otherwise('/login');

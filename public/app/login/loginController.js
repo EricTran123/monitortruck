@@ -13,5 +13,8 @@ app.controller('LoginController', function($scope, $rootScope, $stateParams, $st
             $scope.error = "Incorrect username/password !";
         }
     };
+    $scope.forgotPassword = function() {
 
+        $state.transitionTo('forgotPassword')
+    }
 });

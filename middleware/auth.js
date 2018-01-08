@@ -3,7 +3,7 @@ var x = require('../x')(config);
 
 module.exports = {
     verifyToken: ((req, res, next) => {
-        var token = req.body.token || req.query.token || read.header['x-access-token'];
+        var token = req.body.token || req.query.token || read.header['Authorization'];
         if (token) {
             x.jwt.verify(token, config.SECRET_KEY, (err, decoded) => {
                 if (err) {

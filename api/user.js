@@ -40,7 +40,7 @@ module.exports = function User(x) {
                 return;
             }
             if (!user) {
-                res.send({ success: false, message: 'User does not exists' });
+                res.send({ success: false, message: 'User does not exist.' });
                 return;
             }
             if (!user.validPassword(reqUser.password)) {
@@ -58,11 +58,11 @@ module.exports = function User(x) {
 
     }
     var auth = require('../middleware/auth');
-    var getMemberInfo = function(req, res) {};
+    var getProfile = function(req, res) {};
 
     return {
         register: register,
         login: login,
-        getMemberInfo: getMemberInfo
+        getProfile: getProfile
     }
 }
