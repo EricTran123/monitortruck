@@ -94,8 +94,7 @@ module.exports = function Driver(x) {
                     success: false,
                     message: "Could not find a driver with id " + req.params.id
                 })
-            }
-            if (driver == null) {
+            } else if (driver == null) {
                 res.status(404).send({
                     success: false,
                     message: "Driver can be not found."
