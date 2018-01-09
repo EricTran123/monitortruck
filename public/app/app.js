@@ -9,8 +9,8 @@
         }
     });
 
-    app.config(['$stateProvider', '$urlRouterProvider',
-        function($stateProvider, $urlRouterProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+        function($stateProvider, $urlRouterProvider, $locationProvider) {
             $stateProvider
                 .state('login', {
                     url: '/login',
@@ -29,6 +29,10 @@
                 });
 
             $urlRouterProvider.otherwise('/login');
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: false
+            }).hashPrefix("");
         }
     ]);
 

@@ -3,7 +3,15 @@ app.controller('LoginController', function($scope, $rootScope, $stateParams, $st
     $rootScope.title = "AngularJS Login Sample";
 
     $scope.formSubmit = function() {
-        if (LoginService.login($scope.username, $scope.password)) {
+        LoginService.login($scope.username, $scope.password).then(function(response) {
+            console.log("Token: " + response.data.token);
+            if (response.data.token) {
+                LoginService.isAuthenticated = true;
+            } else {
+                LoginService.isAuthenticated = false;
+            }
+        });
+        if (LoginService.isAuthenticated) {
             $rootScope.userName = $scope.username;
             $state.transitionTo('home');
         } else {
