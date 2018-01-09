@@ -47,17 +47,17 @@
                             <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
                         </div>
                     </div>
-                    <div class="alert alert-danger" ng-show="errorMsg">
+                    <div class="alert alert-danger" ng-show="error">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                                     ×</button>
-                        <span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;{{errorMsg}}
+                        <span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;{{error}}
                     </div>
                 </form>
             </div>
 
         </div>
         <div style="margin-top: -10px">
-            <a href="#" ng-click="forgotPassword()">Forgot Password?</a>
+            <a href="#/forgotPassword" ng-click="forgotPassword()">Forgot Password?</a>
         </div>
     </div>
 </div>

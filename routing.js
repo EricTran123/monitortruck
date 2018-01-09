@@ -6,6 +6,8 @@ module.exports = function Routing(x) {
     router.post('/register', x.apis.user.register);
     //Login user
     router.post('/login', x.apis.user.login);
+    //Change the password
+    router.post('/changePassword', x.apis.user.changePassword);
     routes.user = router;
 
     //Set router for driver controller

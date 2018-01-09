@@ -5,16 +5,13 @@ app.controller('LoginController', function($scope, $rootScope, $stateParams, $st
     $scope.formSubmit = function() {
         if (LoginService.login($scope.username, $scope.password)) {
             $rootScope.userName = $scope.username;
-            $scope.error = '';
-            $scope.username = '';
-            $scope.password = '';
             $state.transitionTo('home');
         } else {
-            $scope.error = "Incorrect username/password !";
+            $scope.error = "User name or password is incorrect.";
         }
     };
     $scope.forgotPassword = function() {
 
-        $state.transitionTo('forgotPassword')
+        $state.go('forgotPassword')
     }
 });

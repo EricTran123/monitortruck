@@ -55,8 +55,29 @@ module.exports = function User(x) {
 
     };
     var changePassword = function(req, res) {
-
-    }
+        var User = require('../model/user_model');
+        process.nextTick(() => {
+            User.findOne({ 'email': req.body.email }, function(err, user) {
+                if (err) {
+                    res.send({ success: false, message: "Cannot find a user with email: " + req.body.emai });
+                    return
+                } else if (!user) {
+                    res.send({ success: false, message: "Cannot find a user with email: " + req.body.emai });
+                    return
+                } else if (user.validPassword(req.body.password)) {
+                    res.send({ success: false, message: "Please enter new password." });
+                } else {
+                    user.password = user.generateHash(req.body.password);
+                    user.save(function(err) {
+                        if (err) {
+                            return res.send({ success: false, message: 'Cannot change the password.' });
+                        }
+                        res.send({ success: true, message: 'Password is changed successfully.' });
+                    })
+                }
+            });
+        })
+    };
     var auth = require('../middleware/auth');
     var getProfile = function(req, res) {
 
@@ -65,6 +86,6 @@ module.exports = function User(x) {
     return {
         register: register,
         login: login,
-        getProfile: getProfile
+        changePassword: changePassword
     }
 }
