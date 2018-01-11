@@ -78,6 +78,9 @@ module.exports = function User(x) {
             });
         })
     };
+    var findUserByEmail = function(req, res) {
+
+    }
     var auth = require('../middleware/auth');
     var getProfile = function(req, res) {
 

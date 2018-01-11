@@ -1,4 +1,3 @@
-
 <div class="container">
     <div id="loginbox" style="margin-top:150px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-info">
@@ -19,11 +18,13 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input type="password" id="inputpassword" class="form-control" required ng-model="password" placeholder="Password">
                     </div>
-                    <div class="form-group">
-                        <!-- Button -->
-                        <div class="col-sm-12 controls">
-                            <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
-                        </div>
+                    <div class="form-inline">
+                        <label for="checkRemember">
+                            <input checked="checked" id="RememberMe" name="RememberMe" type="checkbox" value="true">
+                            <input name="RememberMe" type="hidden" value="false">
+                            <label for="RememberMe">Remember me</label>
+                        </label>
+                        <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
                     </div>
                     <div class="alert alert-danger" ng-show="error">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -34,7 +35,7 @@
             </div>
 
         </div>
-        <div style="margin-top: -10px">
+        <div style="margin-top: -10px ; text-align: center">
             <a href="javascript:void(0);" ui-sref="forgotPassword">Forgot Password?</a>
         </div>
     </div>
