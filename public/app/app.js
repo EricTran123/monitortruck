@@ -1,5 +1,5 @@
 (function() {
-    var app = angular.module('myApp', ['ui.router']);
+    var app = angular.module('myApp', ['ui.router', 'directives']);
 
     app.run(function($rootScope, $location, $state, LoginService) {
         console.clear();

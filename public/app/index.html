@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Monitor Truck System</title>
-    <link rel="shortcut icon" type="image/ico" href="./asset/favicon.ico"/>
+    <link rel="shortcut icon" type="image/ico" href="./asset/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="./asset/css/home.css">
     <script>
         document.write('<base href="' + document.location + '" />');
@@ -18,11 +18,23 @@
     <script src="./login/loginController.js"></script>
     <script src="./home/homeController.js"></script>
     <script src="./app-services/authen.Service.js"></script>
+    <script src="./menu/menu.js"></script>
+    <script src="./rootController.js"></script>
 </head>
 
-<body>
-    <div ui-view>
+<body ng-controller="rootCtrl">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-4 " menu ng-if='userName'>
+            </div>
+            <div {{ userName ? 'class="col-sm-9 col-md-9"' : 'class="col-sm-12 col-md-12"'}}>
+                <div ui-view>
+
+                </div>
+            </div>
+        </div>
     </div>
+
 </body>
 
 </html>
