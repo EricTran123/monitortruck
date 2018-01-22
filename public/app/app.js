@@ -24,7 +24,11 @@
                 })
                 .state('forgotPassword', {
                     url: '/forgotPassword',
-                    templateUrl: './login/forgotPassword.html',
+                    templateUrl: './login/forgotPassword.html'
+                })
+                .state('changePassword', {
+                    url: '/changePassword',
+                    templateUrl: './Users/changePassword.html',
                     controller: 'LoginController'
                 });
 
